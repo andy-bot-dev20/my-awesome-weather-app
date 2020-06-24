@@ -142,3 +142,12 @@ span.weather-5-out-5 {
   display: inline-block;
   width: 100%;
 }
+h4 {
+  color: white;
+  font-size: 1px;
+  font-weight: lighter;
+  text-align: center;
+}
+#open-source-link {
+  color: white;
+}
