@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link rel="stylesheet" href="src/styles.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet" />
+
+    <script src="https://kit.fontawesome.com/6a34d6b11c.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <h1>
+        <i class="far fa-lightbulb"></i>
+        Weather App
+    </h1>
+
+    <h2>
+        <form class="searchCity" id="form-search">
+            <input type="text" id="city-input-text" placeholder="Enter city" />
+            <button type="submit" class="btn btn">
+                <i class="fas fa-search-location fa-2x"></i>
+            </button>
+            <button class="btn btn-success w-1" id="current-location-button">
+                Current
+            </button>
+        </form>
+    </h2>
+
+    <h3>
+        <div class="container">
+            <form>
+                <div class="card text-center">
+                    <div class="card-header">
+                        <div class="row-center">
+                            <span class="cityDisplay" id="entered-city">
+                                San Francisco
+                            </span>
+                        </div>
+                        <div class="row-center">
+                            <span class="dateDisplay" id="dateDisplay">
+                                05/20/2020
+                            </span>
+                        </div>
+                    </div>
+                    <!--The end of the head-->
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <span class="card-title" id="currentWeekday">Wednesday</span>
+                                <br />
+                                <br />
+                                <div class="row justify-content-md-center">
+                                    <div class="col-xs-auto centerImage">
+                                        <img src="images/sun.jpeg" alt="sun" />
+                                    </div>
+                                    <div class="col-xs-auto centerTemp" id="temperature">
+                                        65
+                                    </div>
+                                    <div class="col-xs-auto centerDegreeF">
+                                        <button type="submit" class="btn btn">
+                                            <sup><a href="#" id="fahrenheit-link">°F</a></sup>
+                                        </button>
+                                    </div>
+                                    <div class="col-xs-auto centerDegreeC">
+                                        <button type="submit" class="btn btn">
+                                            <sup><a href="#" id="celsius-link"> °C</a></sup>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--The end of the first column in the body-->
+
+                            <div class="row justify-content-md-center">
+                                <div class="col-xs auto">
+                                    <ul class="list-group">
+                                        <li>Precipation:<span id="precipation"><span>%</li>
+                                        <li>Humidity:<span id="humidity"></span> %</li>
+                                        <li>Wind:<span id="wind"></span> km/h</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--The end of the second column in the body-->
+                    <br />
+                    <div class="card-body weatherHeader">
+                        <h5 class="card-title forecastHeader">
+                            5-day Forecast
+                        </h5>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <div class="row justify-content-md-center">
+                            <div class="col-md-2">
+                                <span class="weekday-1-out-5">
+                                    Thursday
+                                </span>
+                                <div class="row">
+                                    <span class="weather-1-out-5">
+                                        <i class="fas fa-cloud fa-2x"></i>
+                                    </span>
+                                </div>
+                                <div class="row">
+                                    <span class="temp-1-out-5">
+                                        66°F
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <span class="weekday-2-out-5">
+                                    Friday
+                                </span>
+                                <div class="row">
+                                    <span class="weather-2-out-5">
+                                        <i class="fas fa-cloud fa-2x"></i>
+                                    </span>
+                                </div>
+                                <div class="row">
+                                    <span class="temp-2-out-5">
+                                        67°F
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <span class="weekday-3-out-5">
+                                    Saturday
+                                </span>
+                                <div class="row">
+                                    <span class="weather-3-out-5">
+                                        <i class="fas fa-sun fa-2x"></i>
+                                    </span>
+                                </div>
+                                <div class="row">
+                                    <span class="temp-3-out-5">
+                                        67°F
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <span class="weekday-4-out-5">
+                                    Sunday
+                                </span>
+                                <div class="row">
+                                    <span class="weather-4-out-5">
+                                        <i class="fas fa-cloud-sun fa-2x"></i>
+                                    </span>
+                                </div>
+                                <div class="row">
+                                    <span class="temp-4-out-5">
+                                        70°F
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <span class="weekday-5-out-5">
+                                    Monday
+                                </span>
+                                <div class="row">
+                                    <span class="weather-5-out-5">
+                                        <i class="fas fa-cloud-sun fa-2x"></i>
+                                    </span>
+                                </div>
+                                <div class="row">
+                                    <span class="temp-5-out-5">
+                                        73°F
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </h3>
+    <script src="src/index.js"></script>
+</body>
+
+</html>
