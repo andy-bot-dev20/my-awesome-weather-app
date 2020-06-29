@@ -9,6 +9,11 @@ h1 {
   padding-left: 175px;
   font-family: "Inconsolata", monospace;
 }
+.description-display {
+  position: relative;
+  right: -80px;
+  font-size: 20px;
+}
 body {
   background-image: linear-gradient(
     to top,
@@ -32,6 +37,7 @@ h3 {
   position: relative;
   bottom: -85px;
   left: -80px;
+  font-size: 20px;
 }
 
 span.card-title {
