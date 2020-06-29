@@ -87,6 +87,8 @@ function displayWeather(response) {
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
+  let descriptionElement = document.querySelector("#description");
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
 let citySearch = document.querySelector("#form-search");
