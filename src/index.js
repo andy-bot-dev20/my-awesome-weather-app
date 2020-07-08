@@ -24,7 +24,7 @@ let months = [
   "Nov",
   "Dec",
 ];
-let weekDay = [
+let weekofDay = [
   "Sunday",
   "Monday",
   "Tuesday",
@@ -35,7 +35,7 @@ let weekDay = [
 ];
 
 let month = months[now.getMonth()];
-let weekdayDisplay = weekDay[now.getDay()];
+let weekdayDisplay = weekofDay[now.getDay()];
 
 let currentTime = document.querySelector("#dateDisplay");
 currentTime.innerHTML = `${month} ${date},${year} ${hour}:${minute}`;
@@ -85,17 +85,48 @@ function displayWeather(response) {
   iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
+function dispalyForecast(response) {
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = null;
+  let forecast = null;
+
+  for (let index = 0; index < 6; index++) {
+    forecast = response.data.list[index];
+    forecastElement.innerHTML += `
+    <div class="col-2">
+      <h3>
+        ${formatHours(forecast.dt * 1000)}
+      </h3>
+      <img
+        src="http://openweathermap.org/img/wn/${
+          forecast.weather[0].icon
+        }@2x.png"
+      />
+      <div class="weather-forecast-temperature">
+        <strong>
+          ${Math.round(forecast.main.temp_max)}°
+        </strong>
+        ${Math.round(forecast.main.temp_min)}°
+      </div>
+    </div>
+  `;
+  }
+}
+
 let citySearch = document.querySelector("#form-search");
 citySearch.addEventListener("submit", search);
 
 let apiKey = "d7d4c0964a495395c6fffcb36bb9fe78";
-let url = `https://api.openweathermap.org/data/2.5/weather?q=Lisbon&units=metric&appid=${apiKey}`;
+let url = `https://api.openweathermap.org/data/2.5/weather?q=lisbon&units=metric&appid=${apiKey}`;
 axios.get(url).then(displayWeather);
 
 function searchLocation(position) {
   let apiKey = "d7d4c0964a495395c6fffcb36bb9fe78";
   let url = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric&appid=${apiKey}`;
   axios.get(url).then(displayWeather);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(dispalyForecast);
 }
 function getCurrentLocation(event) {
   event.preventDefault();
