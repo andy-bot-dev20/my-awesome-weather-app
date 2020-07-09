@@ -94,20 +94,27 @@ function dispalyForecast(response) {
     forecast = response.data.list[index];
     forecastElement.innerHTML += `
     <div class="col-2">
-      <h3>
+      <span class="weekday-1-out-5">
         ${formatHours(forecast.dt * 1000)}
-      </h3>
+      </span>
+      <div class="row">
+      <span class="weather-1-out-5"
       <img
         src="http://openweathermap.org/img/wn/${
           forecast.weather[0].icon
         }@2x.png"
       />
-      <div class="weather-forecast-temperature">
+      </span>
+      </div>
+      <div class= "row" id="weather-forecast-temperature">
+      <span class="temp-1-out-5">
         <strong>
           ${Math.round(forecast.main.temp_max)}°
         </strong>
         ${Math.round(forecast.main.temp_min)}°
+        </span>
       </div>
+    </div>
     </div>
   `;
   }
