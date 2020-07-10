@@ -2,26 +2,24 @@
 let now = new Date();
 let date = now.getDate();
 let year = now.getFullYear();
-let hours = date.getHours();
-
+let hour = now.getHours();
 if (hour < 10) {
-  hour = `${hour}`;
+  hour = `0${hour}`;
 }
 let minute = now.getMinutes();
 if (minute < 10) {
-  minute = `${minute}`;
+  minute = `0${minute}`;
 }
 
 function formatHours(timestamp) {
-  let date = newDate(timestamp);
+  let date = new Date(timestamp);
   let hours = date.getHours();
-
-  if (hour < 10) {
-    hour = `0${hour}`;
+  if (hours < 10) {
+    hours = `0${hours}`;
   }
-  let minute = now.getMinutes();
-  if (minute < 10) {
-    minute = `0${minute}`;
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
   }
 
   return `${hours}:${minutes}`;
