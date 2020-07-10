@@ -2,14 +2,31 @@
 let now = new Date();
 let date = now.getDate();
 let year = now.getFullYear();
-let hour = now.getHours();
+let hours = date.getHours();
+
 if (hour < 10) {
-  hour = `0${hour}`;
+  hour = `${hour}`;
 }
 let minute = now.getMinutes();
 if (minute < 10) {
-  minute = `0${minute}`;
+  minute = `${minute}`;
 }
+
+function formatHours(timestamp) {
+  let date = newDate(timestamp);
+  let hours = date.getHours();
+
+  if (hour < 10) {
+    hour = `0${hour}`;
+  }
+  let minute = now.getMinutes();
+  if (minute < 10) {
+    minute = `0${minute}`;
+  }
+
+  return `${hours}:${minutes}`;
+}
+
 let months = [
   "Jan",
   "Feb",
@@ -58,6 +75,8 @@ function search(event) {
     enteredCity.innerHTML = null;
     alert("Please type a city");
   }
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityInput.value}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(dispalyForecast);
 }
 
 function displayWeather(response) {
