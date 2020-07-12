@@ -69,6 +69,8 @@ function search(event) {
     enteredCity.innerHTML = `${cityInput.value}`;
     url = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&units=metric&appid=${apiKey}`;
     axios.get(url).then(displayWeather);
+    apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityInput.value}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(dispalyForecast);
   } else {
     enteredCity.innerHTML = null;
     alert("Please type a city");
