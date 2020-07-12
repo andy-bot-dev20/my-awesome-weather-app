@@ -73,8 +73,6 @@ function search(event) {
     enteredCity.innerHTML = null;
     alert("Please type a city");
   }
-  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityInput.value}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(dispalyForecast);
 }
 
 function displayWeather(response) {
@@ -100,6 +98,9 @@ function displayWeather(response) {
   );
 
   iconElement.setAttribute("alt", response.data.weather[0].description);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(dispalyForecast);
 }
 
 function dispalyForecast(response) {
@@ -143,6 +144,9 @@ citySearch.addEventListener("submit", search);
 let apiKey = "d7d4c0964a495395c6fffcb36bb9fe78";
 let url = `https://api.openweathermap.org/data/2.5/weather?q=lisbon&units=metric&appid=${apiKey}`;
 axios.get(url).then(displayWeather);
+
+let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=lisbon&appid=${apiKey}&units=metric`;
+axios.get(apiUrl).then(dispalyForecast);
 
 function searchLocation(position) {
   let apiKey = "d7d4c0964a495395c6fffcb36bb9fe78";
